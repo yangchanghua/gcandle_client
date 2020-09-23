@@ -12,6 +12,9 @@ def final_buy_filter_on_buy_day(data):
 def my_price_func(data):
     return data.close
 
+def sell_on_sc(data):
+    return data.ma_sc == True
+
 
 MY_BUY_STRATEGY = BuyStrategy('ma cross').\
     set_filter_on_buy_day(final_buy_filter_on_buy_day).\
@@ -19,7 +22,9 @@ MY_BUY_STRATEGY = BuyStrategy('ma cross').\
 
 
 MY_SELL_STRATEGY = CombinedSellStrategy("ma cross").append(
-    SellAtCloseStrategy('at close').clear_exclude_rules().clear_extra_rules()
+    SellAtCloseStrategy('at close').clear_exclude_rules().clear_extra_rules().add_extra_filter(
+        sell_on_sc
+    )
 )
 
 
