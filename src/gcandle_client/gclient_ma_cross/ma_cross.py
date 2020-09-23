@@ -4,6 +4,7 @@ NAME = "MA_CROSS"
 
 
 def calc_ma_cross(data):
+    data['pc'] = data.close.shift(1)
     data['ma_20'] = data.close.rolling(20).mean()
     data['ma_60'] = data.close.rolling(60).mean()
     data['ma_jc'] = (data.ma_20 > data.ma_60) & (data.ma_20.shift(1) < data.ma_60.shift(1))
