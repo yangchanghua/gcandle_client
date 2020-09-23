@@ -5,6 +5,7 @@ from gcandle.core.sell_strategy.SellAtCloseStrategy import SellAtCloseStrategy
 from gcandle_client.gclient_ma_cross.ma_cross import MA_CROSS_SERVICE
 from gcandle_client.gclient_ma_cross.ma_cross_buy import MaCrossBuy
 
+
 MY_BUY_STRATEGY = MaCrossBuy()
 
 
