@@ -4,6 +4,7 @@ import numpy as np
 
 NAME = "MA_JC"
 DAYS_AFTER_JC = 10
+MAX_JC_A_BUY = 3
 
 
 def calc_ma_cross(data):
@@ -40,8 +41,7 @@ def features_around_jc(data):
     else:
         return
 
-    max_days_after_dly_to_buy = 3
-    for n in range(1, max_days_after_dly_to_buy + 1):
+    for n in range(1, MAX_JC_A_BUY + 1):
         jcA_rows = data.jcA == n
         if len(data.loc[jcA_rows]) > 0:
             data.loc[jcA_rows, 'jc_after_h'] = data.high.rolling(n).max()
@@ -65,11 +65,11 @@ def forward_fill_cols(data):
     data[cols_to_ffill] = data[cols_to_ffill].fillna(method='ffill')
 
 
-MA_CROSS_SERVICE = MasterIndicatorService(NAME, calc_ma_cross)
+MAJC_ENHANCED_SERVICE = MasterIndicatorService(NAME, calc_ma_cross)
 
 
 if __name__ == '__main__':
-    start = '2020-01-01'
+    start = '2018-01-01'
     end = '2020-12-31'
-    MA_CROSS_SERVICE.recreate_for_all_codes(start, end)
+    MAJC_ENHANCED_SERVICE.recreate_for_all_codes(start, end)
 
