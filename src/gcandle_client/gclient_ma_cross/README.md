@@ -1,6 +1,14 @@
 # gclient_ma_cross 示例策略
 此示例展示一个最简单的双均线策略的实现，全部代码不到60行，可以对任意时间区间的全部A股数据进行回测。
 
+
+## 运行示例
+
+前提：已运行 ../update_data_and_indicators.py 下载了500天的日线数据及其复权。
+1. 进入gcandle_client/gclient_ma_cross目录
+2. $ python ma_cross.py 
+3. $ python ma_cross_backtest.py 
+
 ## 策略思路：
 基本指标为日K线20天和60天均线，买入条件是短均线上穿长均线（命名为金叉ma_jc），下穿（命名为死叉ma_sc）则卖出。
 
